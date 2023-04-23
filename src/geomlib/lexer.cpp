@@ -1,16 +1,10 @@
 #include <cstring>
 #include <stdio.h>
 #include <string>
-#define N 50
+
+#include <libgeometry/lexer.h>
 
 using namespace std;
-
-struct figure {
-    float x;
-    float y;
-    float r;
-};
-typedef struct figure fgr;
 
 void printGaps(int n)
 {
@@ -28,7 +22,7 @@ void ErCheck(char arr[N], int line, int* p)
     if (name != "circle") {
         *p = 0;
         printf("%s", arr);
-        printf("^\nIncorrect input of object name: Err in line %d\n\n", line);
+        printf("^\n" RED("ERROR") "Incorrect input of object name: Err in line %d\n\n", line);
         return;
     }
 
@@ -40,9 +34,8 @@ void ErCheck(char arr[N], int line, int* p)
                   || arr[index] == '.')) {
                 *p = 0;
                 printf("%s", arr);
-                for (int i = 0; i < index; i++)
-                    printf(" ");
-                printf("^\n Object coordinates entered incorrectly: Err in line %d\n\n", line);
+                printGaps(index);
+                printf("^\n" RED("ERROR") "Object coordinates entered incorrectly: Err in line %d\n\n",line);
                 index = 0;
                 return;
             }
@@ -57,9 +50,8 @@ void ErCheck(char arr[N], int line, int* p)
             if (arr[index] == '(') {
                 *p = 0;
                 printf("%s", arr);
-                for (int i = 0; i < index; i++)
-                    printf(" ");
-                printf("^\n Incorrect input of object name ')': Err in line %d\n\n", line);
+                printGaps(index);
+                printf("^\n" RED("ERROR") "Incorrect input of object name ')': Err in line %d\n\n",line);
                 index = tmp;
                 return;
             }
@@ -67,9 +59,9 @@ void ErCheck(char arr[N], int line, int* p)
                   || arr[index] == '.')) {
                 *p = 0;
                 printf("%s", arr);
-                for (int i = 0; i < index; i++)
-                    printf(" ");
-                printf("^\nObject radius entered incorrectly Err in line %d\n\n", line);
+                printGaps(index);
+                printf("^\n" RED("ERROR") "Object radius entered incorrectly Err in line %d\n\n",
+                       line);
                 index = tmp;
                 return;
             }
@@ -81,30 +73,11 @@ void ErCheck(char arr[N], int line, int* p)
         if (arr[index] != ' ') {
             *p = 0;
             printf("%s", arr);
-            for (int i = 0; i < index; i++)
-                printf(" ");
-            printf("^\nErr in line %d: unexpected token\n\n", line);
+            printGaps(index);
+            printf("^\n" RED("ERROR") " in line %d: unexpected token\n\n",
+                   line);
             return;
         }
         index++;
     }
-}
-
-int main()
-{
-    FILE* geom;
-    char arr[N];
-    int line = 1;
-    int status = 1;
-    geom = fopen("geom.txt", "r");
-    while (fgets(arr, N, geom) != NULL) {
-        ErCheck(arr, line, &status);
-        line++;
-    }
-
-    fclose(geom);
-    if (status == 0)
-        return 1;
-
-    return 0;
 }
