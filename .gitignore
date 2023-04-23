@@ -1,3 +1,3 @@
-geo
 *.txt
-
+geom
+!geom.txt
