@@ -20,7 +20,7 @@ void ErCheck(std::string arr, int line, int* p)
     if (name != "circle") {
         *p = 0;
         printf("%s\n", arr.c_str());
-        printf("^\n" RED("ERROR") " in line %d: expected 'circle'\n\n", line);
+        printf("^\n" RED("ERROR") "Incorrect input of object name: Err in line %d\n\n", line);
         return;
     }
 
@@ -33,7 +33,7 @@ void ErCheck(std::string arr, int line, int* p)
                 *p = 0;
                 printf("%s\n", arr.c_str());
                 printGaps(index);
-                printf("^\n" RED("ERROR") " in line %d: expected number\n\n",
+                printf("^\n" RED("ERROR") "  Object coordinates entered incorrectly: Err in line %d\n\n",
                        line);
                 index = 0;
                 return;
@@ -50,7 +50,7 @@ void ErCheck(std::string arr, int line, int* p)
                 *p = 0;
                 printf("%s\n", arr.c_str());
                 printGaps(index);
-                printf("^\n" RED("ERROR") " in line %d: expected ')'\n\n",
+                printf("^\n" RED("ERROR") "Incorrect input of object name ')': Err in line %d\n\n",
                        line);
                 index = tmp;
                 return;
@@ -60,7 +60,7 @@ void ErCheck(std::string arr, int line, int* p)
                 *p = 0;
                 printf("%s\n", arr.c_str());
                 printGaps(index);
-                printf("^\n" RED("ERROR") " in line %d: expected number\n\n",
+                printf("^\n" RED("ERROR") " Object radius entered incorrectly Err in line %d\n\n",
                        line);
                 index = tmp;
                 return;
