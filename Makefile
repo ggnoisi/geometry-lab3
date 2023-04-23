@@ -1,5 +1,5 @@
-all: geo
-geo:	geometry.c
-	gcc -Wall -Werror -o geo geometry.c
+all: geom
+geom:	geometry.cpp
+	g++ -Wall -Werror -o geom geometry.cpp
 clean:
-	rm geo
+	rm geom
